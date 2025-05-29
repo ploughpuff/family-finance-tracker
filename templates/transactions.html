@@ -29,15 +29,8 @@
             <tr>
                 <th>ID</th>
                 <th>Transaction Date</th>
-                <th>Posting Date</th>
                 <th>Billing Amount</th>
                 <th>Merchant</th>
-                <th>City</th>
-                <th>County</th>
-                <th>Postal Code</th>
-                <th>Reference #</th>
-                <th>Debit/Credit</th>
-                <th>SICMCC</th>
             </tr>
         </thead>
         <tbody>
@@ -45,15 +38,8 @@
             <tr>
                 <td>{{ t.id }}</td>
                 <td>{{ t.transaction_date }}</td>
-                <td>{{ t.posting_date }}</td>
                 <td>£{{ "%.2f"|format(t.billing_amount) }}</td>
-                <td>{{ t.merchant }}</td>
-                <td>{{ t.merchant_city }}</td>
-                <td>{{ t.merchant_county }}</td>
-                <td>{{ t.merchant_postal_code }}</td>
-                <td>{{ t.reference_number }}</td>
-                <td>{{ t.debit_credit_flag }}</td>
-                <td>{{ t.sicmcc_code }}</td>
+                <td>{{ t.merchant_full }}</td>
             </tr>
             {% endfor %}
         </tbody>
