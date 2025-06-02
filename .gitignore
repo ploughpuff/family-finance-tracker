@@ -1,2 +1,5 @@
 *.pyc
 database.db
+app.db
+app.log
+/example_csv

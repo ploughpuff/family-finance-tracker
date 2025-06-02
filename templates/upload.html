@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Transactions{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Upload</h1>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<table border="1">
+    <tr>
+        <th>Account Name</th>
+        <th>Description</th>
+        <th>Upload CSV</th>
+    </tr>
+    {% for account_name, account_data in accounts.items() %}
+    <tr>
+        <td>{{ account_name }}</td>
+        <td>{{ account_data.description or '' }}</td>
+        <td>
+            <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="account_name" value="{{ account_name }}">
+                <input type="file" name="file" required>
+                <button type="submit">Upload</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

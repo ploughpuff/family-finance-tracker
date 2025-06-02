@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assign Merchant Categories</title>
+</head>
+
+<body>
+    <h1>Assign Merchants to Categories</h1>
+    <form method="POST">
+        <label for="merchant">Merchant:</label>
+        <select name="merchant">
+            {% for m in merchants %}
+            <option value="{{ m[0] }}">{{ m[0] }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="category">Category:</label>
+        <select name="category">
+            {% for cat in ['Food', 'Utilities', 'Entertainment', 'Home'] %}
+            <option value="{{ cat }}">{{ cat }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="subcategory">Sub-category:</label>
+        <input name="subcategory" placeholder="e.g. Groceries, Takeout" />
+
+        <button type="submit">Assign</button>
+    </form>
+
+    <h2>Current Assignments</h2>
+    <ul>
+        {% for g in merchant_groups %}
+        <li><strong>{{ g.merchant_name }}</strong>: {{ g.category }} → {{ g.subcategory }}</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

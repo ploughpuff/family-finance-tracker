@@ -1,49 +1,30 @@
-<!DOCTYPE html>
-<html>
+<!-- templates/transactions.html -->
+{% extends "base.html" %}
 
-<head>
-    <title>Transactions</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-        }
+{% block title %}Transactions{% endblock %}
 
-        th,
-        td {
-            border: 1px solid #ccc;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f3f3f3;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>All Transactions</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Transaction Date</th>
-                <th>Billing Amount</th>
-                <th>Merchant</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for t in transactions %}
-            <tr>
-                <td>{{ t.id }}</td>
-                <td>{{ t.transaction_date }}</td>
-                <td>£{{ "%.2f"|format(t.billing_amount) }}</td>
-                <td>{{ t.merchant_full }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</body>
-
-</html>
+{% block content %}
+<h1 class="mb-4">Transactions</h1>
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Date</th>
+            <th>Merchant</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Account</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tx in transactions %}
+        <tr>
+            <td>{{ tx.date }}</td>
+            <td>{{ tx.merchant }}</td>
+            <td>£{{ "%.2f"|format(tx.amount) }}</td>
+            <td>{{ tx.category.name if tx.category else '' }}</td>
+            <td>{{ tx.account_name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

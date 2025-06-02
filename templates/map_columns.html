@@ -1,0 +1,45 @@
+<h2>Map CSV Columns</h2>
+<form method="POST" action="{{ url_for('map_columns') }}">
+    <label>Date column:</label>
+    <select name="date_column">
+        {% for header in headers %}
+        <option value="{{ header }}">{{ header }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label>Merchant column:</label>
+    <select name="merchant_column">
+        {% for header in headers %}
+        <option value="{{ header }}">{{ header }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label>Amount column:</label>
+    <select name="amount_column">
+        {% for header in headers %}
+        <option value="{{ header }}">{{ header }}</option>
+        {% endfor %}
+    </select><br>
+
+    <button type="submit">Confirm and Import</button>
+
+    <h3>Preview</h3>
+    <table>
+        <thead>
+            <tr>
+                {% for header in headers %}
+                <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in preview %}
+            <tr>
+                {% for header in headers %}
+                <td>{{ row[header] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
